@@ -2,73 +2,115 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    canvas {
-      border: 1px solid #0e0e0e;
-      background-color: #000;
-    }
-  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        canvas {
+            border: 1px solid #0e0e0e;
+        }
+    </style>
 </head>
 
 <body onload="gameStart()">
 
-  <script>
-    var gamePiece;
-    x1 = 0; a1 = 0.2;
-    y1 = 0; a2 = 1.8;
-    function gameStart() {
-      gamePiece = new comp(20, "yellow", 25, 120);
-      gameArea.start();
-    }
-    var gameArea = {
-      canvas: document.createElement("canvas"),
-      start: function () {
-        this.canvas.width = 500;
-        this.canvas.height = 500;
-        this.context = this.canvas.getContext("2d");
-        document.body.appendChild(this.canvas);
-        this.interval = setInterval(updateGameArea, 20);
-      },
-      clear: function () {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      }
-    }
-    function comp(rad, color, x, y) {
-      this.rad = rad;
-      this.x = x;
-      this.y = y;
-      this.update = function () {
-        onkeydown = function (e) {
-          var z = e.keyCode;
-          if (z == 37) { x1 = -2; y1 = 0; a1 = 1.2; a2 = 0.8 }
-          else if (z == 38) { y1 = -2; x1 = 0; a1 = 1.7; a2 = 1.3 }
-          else if (z == 39) { x1 = 2; y1 = 0; a1 = 0.2; a2 = 1.8; }
-          else if (z == 40) { y1 = 2; x1 = 0; a1 = 0.7; a2 = 0.3 }
+    <script>
+        var level1 = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+            [0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0],
+            [0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
+            [0, 2, 2, 2, 0, 0, 5, 0, 0, 2, 2, 2, 0],
+            [0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
+            [0, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0],
+            [0, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+        var gamePiece;
+        x1 = 0; a1 = 0.2; p1 = 0; k = 1;
+        y1 = 0; a2 = 1.8; q1 = 1;
+        function gameStart() {
+            gamePiece = new pac(10, "yellow", 1, 1);
+            gameArea.start();
         }
-        onkeyup = function (e) {
-          var z = e.keyCode;
-          if (z == 37) { x1 = 0; y1 = 0; }
-          else if (z == 38) { y1 = 0; x1 = 0; }
-          else if (z == 39) { x1 = 0; y1 = 0; }
-          else if (z == 40) { y1 = 0; x1 = 0; }
+        var gameArea = {
+            canvas: document.createElement("canvas"),
+            start: function () {
+                this.canvas.width = 500;
+                this.canvas.height = 500;
+                this.context = this.canvas.getContext("2d");
+                document.body.appendChild(this.canvas);
+                this.interval = setInterval(updateGameArea, 250);
+
+
+
+            },
+            clear: function () {
+                ctx = gameArea.context;
+                ctx.fillStyle = "black";
+                ctx.fillRect(0, 0, 500, 500);
+                grid();
+            }
         }
-        ctx = gameArea.context;
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.rad, a1 * Math.PI, a2 * Math.PI);
-        ctx.stroke();
-        ctx.lineTo(this.x, this.y);
-        ctx.fill();
-      }
-    }
-    function updateGameArea() {
-      gameArea.clear();
-      gamePiece.x += x1;
-      gamePiece.y += y1;
-      gamePiece.update();
-    }
-  </script>
+
+
+        function grid() {
+
+            for (i = 0; i < 9; i++)
+                for (j = 0; j < 13; j++)
+                    if (level1[i][j] == 0) {
+                        ctx = gameArea.context;
+                        ctx.fillStyle = "white";
+                        ctx.fillRect(j * 24 + 24, i * 24 + 24, 24, 24);
+                    }
+                    else if (level1[i][j] == 2) {
+                        ctx = gameArea.context;
+                        ctx.fillStyle = "red";
+                        ctx.fillRect(j * 24 + 34, i * 24 + 34, 4, 4);
+                    }
+
+        }
+
+
+
+        function pac(rad, color, p, q) {
+            this.rad = rad;
+            this.p = p;
+            this.q = q;
+            this.update = function () {
+                onkeydown = function (e) {
+                    var z = e.keyCode;
+
+                    if (z == 37) { p1 = 0; q1 = -1; a1 = 1.2; a2 = 0.8 }
+                    else if (z == 38) { p1 = -1; q1 = 0; a1 = 1.7; a2 = 1.3 }
+                    else if (z == 39) { p1 = 0; q1 = 1; a1 = 0.2; a2 = 1.8; }
+                    else if (z == 40) { q1 = 0; p1 = 1; a1 = 0.7; a2 = 0.3 }
+                }
+                if (level1[this.p + p1][this.q + q1]) {
+                    gamePiece.p += p1;
+                    gamePiece.q += q1;
+                    level1[this.p][this.q] = 1;
+                }
+                else { p1 = 0; q1 = 0; }
+
+                k = k * -1;
+                ctx = gameArea.context;
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc((this.q * 24) + 36, (this.p * 24) + 36, this.rad, a1 * Math.PI, a2 * Math.PI);
+                ctx.lineTo((this.q * 24) + 36, (this.p * 24) + 36);
+                ctx.fill();
+            }
+        }
+
+
+
+
+
+        function updateGameArea() {
+            gameArea.clear();
+
+            gamePiece.update();
+        }
+    </script>
 
 </body>
 
