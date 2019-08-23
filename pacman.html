@@ -14,16 +14,13 @@
 <body onload="gameStart()">
 
   <script>
-
     var gamePiece;
     x1 = 0; a1 = 0.2;
     y1 = 0; a2 = 1.8;
-
     function gameStart() {
       gamePiece = new comp(20, "yellow", 25, 120);
       gameArea.start();
     }
-
     var gameArea = {
       canvas: document.createElement("canvas"),
       start: function () {
@@ -37,7 +34,6 @@
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
     }
-
     function comp(rad, color, x, y) {
       this.rad = rad;
       this.x = x;
@@ -66,15 +62,12 @@
         ctx.fill();
       }
     }
-
     function updateGameArea() {
-
       gameArea.clear();
       gamePiece.x += x1;
       gamePiece.y += y1;
       gamePiece.update();
     }
-
   </script>
 
 </body>
