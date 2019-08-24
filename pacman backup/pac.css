@@ -1,0 +1,47 @@
+*{
+    box-sizing:border-box;
+}
+
+.body{
+    background-color: black;
+}
+
+body > div {
+    margin: 120px auto;
+    text-align: center;
+  }
+
+.block{
+widows:100px;
+height: 100px;
+display:inline-block;
+vertical-align:top;
+}
+
+.boundary{
+background-color:blue;
+border: 2px solid rgb(0, 128, 128);
+}
+
+.point{
+    background-color:yellow;
+    border-radius:50%;
+    transform:scale(0.3) ;
+}
+
+.pacman{
+    background-image:url('../pacman images/pacman.png');
+
+}
+.left{
+    background-image:url('../pacman images/pacman-left.png');
+    
+}
+.up{
+    background-image:url('../pacman images/pacman-up.png');
+    
+}
+.down{
+    background-image:url('../pacman images/pacman-down.png');
+    
+}

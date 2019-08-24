@@ -1,0 +1,16 @@
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #0e0d0d;">
+</canvas>
+
+<script>
+    x=250;y=250;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.fillStyle="black";
+ctx.fillRect(0,0,500,500);
+ctx.beginPath();
+ctx.arc(x,y, 20, 0.20*Math.PI , 1.80 * Math.PI);
+ctx.stroke();
+ctx.lineTo(x,y);
+ctx.fillStyle="yellow";
+ctx.fill();
+</script> 
