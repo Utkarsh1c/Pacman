@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+</head>
+
+<body>  
+        
+            <div class= "row">
+                <div class ="column">
+                        <img id="pic1"  src="imagesfront/pac.jpg" style="width:25%" >
+                </div>
+                <div class ="column">
+                        <img id="pic3"  src="imagesfront/ghost3.png" style="width:10%" > 
+                </div>
+                <div class ="column">
+                    <img id="pic2"  src="imagesfront/ghosts.jpg" style="width:30%" > 
+            </div>
+            <div class ="column">
+                <img id="pic4"  src="imagesfront/face1.jpg" style="width:10%" > 
+        </div>
+         </div>
+         <div class="container"> 
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+            <div class= "red"></div>
+             
+         </div>
+         
+        
+        
+        <style>
+             *{
+                 margin:0;
+                 padding:0;
+             }
+               
+
+             body{
+                height: 650px;
+               width: 1000x;
+                background:  radial-gradient(circle, red, black, rgb(32, 1, 1));
+                 
+             }
+
+             #pic1{
+                display: inline;
+                 margin-left:38%;
+                padding-top:10%;
+                
+             }
+             #pic3{
+                 float:right;
+                 padding-right:10%;
+                 padding-top:-2%;
+                 
+             }
+             #pic2{
+                display: inline;
+                 margin-left:35%;
+                padding-top:2%;
+                
+             }
+             #pic4{
+                 float:left;
+                 padding-left:10%;
+                 margin-top:-20%;
+             }
+             
+             .red:nth-child(1),
+             .red:nth-child(2),
+             .red:nth-child(3),
+             .red:nth-child(4),
+             .red:nth-child(5),
+             .red:nth-child(6),
+             .red:nth-child(7),
+             .red:nth-child(8),
+             .red:nth-child(9),
+             .red:nth-child(10)
+             {
+                 width:55px;
+                 height:55px;
+                 display:inline-flex;
+                 border-radius: 50%;
+                 animation-name: popup;
+                 animation-duration:1s;
+                 animation-timing-function: ease-in;
+                 animation-iteration-count: infinite;
+                  
+             }
+
+             .red:nth-child(1){
+                 background: red;
+             }
+             .red:nth-child(2){
+                 background:red;
+                 animation-delay: .15s;
+             }
+             .red:nth-child(3){
+                 background:red;
+                 animation-delay: .25s;
+             }
+             .red:nth-child(4){
+                 background:red;
+                 animation-delay: .35s;
+             }
+             .red:nth-child(5){
+                 background:red;
+                 animation-delay: .45s;
+             }
+             .red:nth-child(6){
+                 background: red;
+                 animation-delay: .55s;
+             }
+             .red:nth-child(7){
+                 background:red;
+                 animation-delay: .65s;
+             }
+             .red:nth-child(8){
+                 background:red;
+                 animation-delay: .75s;
+             }
+             .red:nth-child(9){
+                 background:red;
+                 animation-delay: .85s;
+             }
+             .red:nth-child(10){
+                 background:red;
+                 animation-delay: .95s;
+             }
+             
+             .container{
+                 text-align:center;
+                 margin-left:auto;
+                 margin-top:17%;
+             }
+             @keyframes popup{
+                 0%{
+                     transform:translateY(0px);
+                 }
+                 50%{
+                     transform:translateY(-155px);
+                 }
+                 100%{
+                     transform:translateY(0px);
+                 }
+             }
+             
+           
+              </style> 
+
+     <script>
+    
+    
+    </script> 
+    </body>
+    </html>
