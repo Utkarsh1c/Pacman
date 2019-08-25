@@ -15,14 +15,17 @@
                 <div class ="column">
                         <img id="pic3"  src="imagesfront/ghost3.png" style="width:10%" > 
                 </div>
-                <div class ="column">
+                <!-- <div class ="column">
                     <img id="pic2"  src="imagesfront/ghosts.jpg" style="width:30%" > 
-            </div>
+            </div> -->
             <div class ="column">
-                <img id="pic4"  src="imagesfront/face1.jpg" style="width:10%" > 
+                <img id="pic4"  src="imagesfront/face1.jpg" style="width:15%" > 
         </div>
          </div>
          <div class="container"> 
+                <div class ="pacman">
+                <img id="pic5"  src="imagesfront/pacman.png" style="width:70%" > 
+                </div>
             <div class= "red"></div>
             <div class= "red"></div>
             <div class= "red"></div>
@@ -33,9 +36,10 @@
             <div class= "red"></div>
             <div class= "red"></div>
             <div class= "red"></div>
-             
+            
          </div>
-         
+         <button type="button" id="start" onclick="myFunction()">START GAME</button>
+
         
         
         <style>
@@ -64,19 +68,19 @@
                  padding-top:-2%;
                  
              }
-             #pic2{
+             /* #pic2{
                 display: inline;
                  margin-left:35%;
                 padding-top:2%;
                 
-             }
+             } */
              #pic4{
                  float:left;
-                 padding-left:10%;
-                 margin-top:-20%;
+                 padding-left:-1%;
+                 margin-top:5%;
              }
              
-             .red:nth-child(1),
+             /* .red:nth-child(1),
              .red:nth-child(2),
              .red:nth-child(3),
              .red:nth-child(4),
@@ -87,14 +91,14 @@
              .red:nth-child(9),
              .red:nth-child(10)
              {
-                 width:55px;
-                 height:55px;
+                 width:20px;
+                 height:20px;
                  display:inline-flex;
                  border-radius: 50%;
                  animation-name: popup;
                  animation-duration:1s;
                  animation-timing-function: ease-in;
-                 animation-iteration-count: infinite;
+                 animation-iteration-count: 1;
                   
              }
 
@@ -153,13 +157,140 @@
                  100%{
                      transform:translateY(0px);
                  }
+             } */
+             .red:nth-child(1),
+             .red:nth-child(2),
+             .red:nth-child(3),
+             .red:nth-child(4),
+             .red:nth-child(5),
+             .red:nth-child(6),
+             .red:nth-child(7),
+             .red:nth-child(8),
+             .red:nth-child(9),
+             .red:nth-child(10)
+             {
+                 width:18px;
+                 height:18px;
+                 margin-right: 10px;
+                 display:inline-flex;
+                 border-radius: 50%;
+                 animation-name: popup;
+                 animation-duration:.5s;
+                 /* animation-iteration-count: infinite;  */
+                 animation-fill-mode: forwards;
+                
              }
-             
-           
+             .pacman{
+                display:inline-flex;  
+                animation-name:move;
+                animation-duration: 11s;
+                animation-fill-mode:forwards;
+             }
+             .red:nth-child(1){
+                 background: rgb(230, 160, 8);
+             }
+             .red:nth-child(2){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 1s;
+             }
+             .red:nth-child(3){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 2s;
+             }
+             .red:nth-child(4){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 3s;
+             }
+             .red:nth-child(5){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 4s;
+             }
+             .red:nth-child(6){
+                 background: rgb(230, 160, 8);
+                 animation-delay: 5s;
+             }
+             .red:nth-child(7){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 6s;
+             }
+             .red:nth-child(8){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 7s;
+             }
+             .red:nth-child(9){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 8s;
+             }
+             .red:nth-child(10){
+                 background:rgb(230, 160, 8);
+                 animation-delay: 9s;
+             }
+             .container{
+                 text-align:center;
+                 padding-left:-100%;
+                 margin-top:2%;
+                 
+             }
+
+
+           @keyframes popup{
+               0%{
+                   display:red;
+               }
+               100%{
+                   background:black;
+               }
+           }
+           @keyframes move{
+               0%{
+                   transform:translateX(0px);
+
+               }
+               10%{
+                transform:translateX(40px);
+               }
+               20%{
+                transform:translateX(80px);
+               }
+               30%{
+                transform:translateX(112px);
+               }
+               40%{
+                transform:translateX(140px);
+               }
+               50%{
+                transform:translateX(175px);
+               }
+               60%{
+                transform:translateX(205px);
+               }
+               70%{
+                transform:translateX(237px);
+               }
+               80%{
+                transform:translateX(270px);
+               }
+               90%{
+                transform:translateX(310px);
+               }
+               100%{
+                transform:translateX(350px);  
+               }
+             }
+
+           .button{
+                text-align:center;
+            }
               </style> 
 
      <script>
     
+
+        function myFunction() {
+        var x = document.getElementById("start");
+
+        }
+
     
     </script> 
     </body>
