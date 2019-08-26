@@ -20,36 +20,38 @@
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]; */
         var level1 = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0],
-            [0, 2, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0, 0, 2, 0],
-            [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
-            [0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0],
-            [1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 1],
-            [0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0],
-            [0, 2, 2, 2, 0, 2, 2, 1, 2, 2, 0, 2, 2, 2, 0],
-            [0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0],
-            [1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 1],
-            [0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0],
-            [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
-            [0, 2, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0, 0, 2, 0],
-            [0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0],
+            [0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0],
+            [0, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 0],
+            [0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0],
+            [1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 1],
+            [1, 1, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1, 1],
+            [0, 0, 0, 2, 0, 1, 1, 0, 2, 0, 1, 1, 0, 2, 0, 0, 0],
+            [0, 4, 2, 2, 0, 1, 1, 0, 1, 0, 1, 1, 0, 2, 2, 4, 0],
+            [0, 0, 0, 2, 0, 1, 1, 0, 2, 0, 1, 1, 0, 2, 0, 0, 0],
+            [1, 1, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1, 1],
+            [1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 1],
+            [0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0],
+            [0, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 0],
+            [0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0],
+            [0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ];
         var gamePiece;
         var ghostPiece1;
         var ghostPiece2;
         var ghostPiece3;
         var ghostPiece4;
-        x1 = 0; a1 = 0.2; p1 = 0; k = 1; p2 = 0; t = -1;
-        y1 = 0; a2 = 1.8; q1 = 0; f = 0; q2 = -5; sc = 0;
+        a1 = 0.2; p1 = 0; p2 = 0; t = -1; time = 0;
+        a2 = 1.8; q1 = 0; q2 = -5; m = 5;
 
         function gameStart() {
             gamePiece = new pac(10, "yellow", 1, 1);
-            ghostPiece1 = new ghost(7, 7, -1, 0, "aqua",1);
-            ghostPiece2 = new ghost(7, 7, 1, 0, "fuchsia",1);
-            ghostPiece3 = new ghost(7, 7, 0, 1, "blue",1);
-            ghostPiece4 = new ghost(7, 7, 0, -1, "chartreuse",1);
+            ghostPiece1 = new ghost(8, 8, -1, 0, "aqua",1);
+            ghostPiece2 = new ghost(8, 8, 1, 0, "fuchsia",1);
+            ghostPiece3 = new ghost(8, 8, 0, 1, "blue",1);
+            ghostPiece4 = new ghost(8, 8, 0, -1, "chartreuse",1);
             gameArea.start();
         }
 
@@ -78,19 +80,29 @@ function grid() {
 
     f = 0;
 
-    for (i = 0; i < 15; i++)
-        for (j = 0; j < 15; j++)
+    for (i = 0; i < 17; i++)
+        for (j = 0; j < 17; j++)
+            
             if (level1[i][j] == 0) {
                 ctx = gameArea.context;
                 ctx.fillStyle = "white";
                 ctx.fillRect(j * 24 + 24, i * 24 + 24, 24, 24);
             }
+            
+            
             else if (level1[i][j] == 2) {
                 f++;
+                ctx = gameArea.context;
+                ctx.fillStyle = "springgreen";
+                ctx.fillRect(j * 24 + 34, i * 24 + 34, 4, 4);
+            }
+          
+            else if (level1[i][j] == 4) {
                 ctx = gameArea.context;
                 ctx.fillStyle = "red";
                 ctx.fillRect(j * 24 + 34, i * 24 + 34, 4, 4);
             }
+        
 
 
     if (f == 0)
@@ -107,6 +119,9 @@ function grid() {
     this.color=color;
 
     this.update = function () {
+        col=this.color;
+        if(time>0)
+        col="PaleTurquoise";
     level1[this.i][this.j] = this.temp;
     if (Math.abs(this.p)) {
         if (level1[this.i][this.j + 1] && level1[this.i][this.j - 1]) {
@@ -160,18 +175,18 @@ function grid() {
    
 
     ctx = gameArea.context;
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = col;
     ctx.beginPath();
     ctx.arc(this.j * 24 + 36, this.i * 24 + 36, 10, 1 * Math.PI, 2 * Math.PI);
     ctx.lineTo(this.j * 24 + 36, this.i * 24 + 36);
     ctx.fill();
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = col;
     ctx.moveTo(this.j * 24 + 26, this.i * 24 + 36);
-    ctx.lineTo(this.j * 24 + 26, this.i * 24 + 46);
-    ctx.lineTo(this.j * 24 + 31, this.i * 24 + 41);
-    ctx.lineTo(this.j * 24 + 36, this.i * 24 + 46);
-    ctx.lineTo(this.j * 24 + 41, this.i * 24 + 41);
-    ctx.lineTo(this.j * 24 + 46, this.i * 24 + 46);
+    ctx.lineTo(this.j * 24 + 26, this.i * 24 + 41 + m);
+    ctx.lineTo(this.j * 24 + 31, this.i * 24 + 36 + m);
+    ctx.lineTo(this.j * 24 + 36, this.i * 24 + 41 + m);
+    ctx.lineTo(this.j * 24 + 41, this.i * 24 + 36 + m);
+    ctx.lineTo(this.j * 24 + 46, this.i * 24 + 41 + m);
     ctx.lineTo(this.j * 24 + 46, this.i * 24 + 36);
     ctx.fill();
 
@@ -184,6 +199,7 @@ function pac(rad, color, p, q) {
     this.p = p;
     this.q = q;
     this.update = function () {
+        if(time==0)
     if(level1[this.p][this.q] == 5 || level1[this.p + p1][this.q + q1] == 5)
             alert("ded");
         onkeydown = function (e) {
@@ -196,10 +212,24 @@ function pac(rad, color, p, q) {
                 else if (z == 40) { q1 = 0; p1 = 1; p2 = 5; q2 = 0; a1 = 0.7; a2 = 0.3; }
             }
         }
-        
+            if(time==35)
+            {
+                time=0;
+                m=5;
+            }
+            if(time > 0)
+            time++;
+
+            if (level1[this.p + p1][this.q + q1]==4) {
+                time=1;
+                m=0;
+                gamePiece.p += p1;
+                gamePiece.q += q1;
+                level1[this.p][this.q] = 1;
+
+            }
        
-            if (level1[this.p + p1][this.q + q1]) {
-                sc++;
+            else if (level1[this.p + p1][this.q + q1]) {
                 gamePiece.p += p1;
                 gamePiece.q += q1;
                 level1[this.p][this.q] = 1;
@@ -225,6 +255,8 @@ function pac(rad, color, p, q) {
     }
 
 }
+
+
 function updateGameArea() {
 
     gameArea.clear();
@@ -233,11 +265,15 @@ function updateGameArea() {
     ghostPiece2.update();
     ghostPiece3.update();
     ghostPiece4.update();
-            
+    
 
 }
+
+
 </script>
 
 </body>
 
 </html>
+      
+                
