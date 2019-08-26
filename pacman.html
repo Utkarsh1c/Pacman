@@ -3,9 +3,20 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+            canvas {
+                        position: absolute;
+                        top:0;bottom:0;right:0;left:0;
+                        margin:auto;
+            }
+    </style>
 </head>
 
 <body onload="gameStart()">
+    
+    <audio autoplay loop>
+        <source  src="pacman_chomp.wav" type="audio/wav">
+    </audio>
 
     <script>
         /* var level1 = [
@@ -21,7 +32,7 @@
         ]; */
         var level1 = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0],
+            [0, 1, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0],
             [0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0],
             [0, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 0],
             [0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0],
@@ -44,7 +55,7 @@
         var ghostPiece3;
         var ghostPiece4;
         a1 = 0.2; p1 = 0; p2 = 0; t = -1; time = 0;
-        a2 = 1.8; q1 = 0; q2 = -5; m = 5;
+        a2 = 1.8; q1 = 0; q2 = -5; m = 5; sc = 0;
 
         function gameStart() {
             gamePiece = new pac(10, "yellow", 1, 1);
@@ -76,6 +87,9 @@ var gameArea = {
     }
 }
 
+
+
+
 function grid() {
 
     f = 0;
@@ -85,7 +99,7 @@ function grid() {
             
             if (level1[i][j] == 0) {
                 ctx = gameArea.context;
-                ctx.fillStyle = "white";
+                ctx.fillStyle = "Lavender";
                 ctx.fillRect(j * 24 + 24, i * 24 + 24, 24, 24);
             }
             
@@ -103,7 +117,14 @@ function grid() {
                 ctx.fillRect(j * 24 + 34, i * 24 + 34, 4, 4);
             }
         
-
+                ctx = gameArea.context;
+                ctx.font = "30px Verdana";
+                var gradient = ctx.createLinearGradient(0, 0, 250, 0);
+                gradient.addColorStop("0", "magenta");
+                gradient.addColorStop("0.5", "blue");
+                gradient.addColorStop("1.0", "red");
+                ctx.fillStyle = gradient;
+                ctx.fillText("Score: "+sc,20,475);
 
     if (f == 0)
         alert("You won");
@@ -125,15 +146,51 @@ function grid() {
     level1[this.i][this.j] = this.temp;
     if (Math.abs(this.p)) {
         if (level1[this.i][this.j + 1] && level1[this.i][this.j - 1]) {
-            if (Math.round(Math.random())) { this.p = 0; this.q = 1 }
+            if((level1[this.i + this.p][this.j + this.q]))
+            {
+                if((Math.ceil(Math.random()*3))==1)
+                {
+                    this.p = 0; this.q = 1   
+                }
+                else if((Math.ceil(Math.random()*3))==2)
+                {
+                    this.p = 0; this.q = -1  
+                }
+                else{
+                    this.q = 0;
+                }
+            }
+            else{if(Math.round(Math.random())) { this.p = 0; this.q = 1 }
             else { this.p = 0; this.q = -1 }
 
-        }
+        }}
         else if (level1[this.i][this.j + 1]) {
+            if(level1[this.i + this.p][this.j + this.q])
+            {
+                if(Math.round(Math.random())){
+                    this.p = 0; this.q = 1;
+                }
+                else{
+                    this.q = 0;
+                }
+            }
+            else{
             this.p = 0; this.q = 1;
+            }
         }
         else if (level1[this.i][this.j - 1]) {
+            if(level1[this.i + this.p][this.j + this.q])
+            {
+                if(Math.round(Math.random())){
+                    this.p = 0; this.q = -1;
+                }
+                else{
+                    this.q = 0;
+                }
+            }
+            else{
             this.p = 0; this.q = -1;
+            }
         }
         else if (level1[this.i + this.p][this.j + this.q]) {
             this.q = 0;
@@ -147,16 +204,55 @@ function grid() {
     }
     else {
         if (level1[this.i + 1][this.j] && level1[this.i - 1][this.j]) {
+
+            if(level1[this.i + this.p][this.j + this.q]){
+                if((Math.ceil(Math.random()*3))==1)
+                {
+                    this.p = 1; this.q = 0;
+                }
+                else if((Math.ceil(Math.random()*3))==2)
+                {
+                    this.p = -1; this.q = 0; 
+                }
+                else{
+                    this.p = 0;
+                }
+            }
+
+
+            else{
             if (Math.round(Math.random())) { this.p = 1; this.q = 0 }
             else { this.p = -1; this.q = 0 }
-
-
+            }
         }
+
         else if (level1[this.i + 1][this.j]) {
+            if(level1[this.i + this.p][this.j + this.q])
+            {
+                if(Math.round(Math.random())){
+                    this.p = 1; this.q = 0;
+                }
+                else{
+                    this.p = 0;
+                }
+            }
+            else{
             this.p = 1; this.q = 0;
+            }
         }
         else if (level1[this.i - 1][this.j]) {
+            if(level1[this.i + this.p][this.j + this.q])
+            {
+                if(Math.round(Math.random())){
+                    this.p = -1; this.q = 0;
+                }
+                else{
+                    this.p = 0;
+                }
+            }
+            else{
             this.p = -1; this.q = 0;
+        }
         }
         else if (level1[this.i + this.p][this.j + this.q]) {
             this.p = 0;
@@ -201,7 +297,7 @@ function pac(rad, color, p, q) {
     this.update = function () {
         if(time==0)
     if(level1[this.p][this.q] == 5 || level1[this.p + p1][this.q + q1] == 5)
-            alert("ded");
+            alert("You died! Score = "+ sc);
         onkeydown = function (e) {
             var z = e.keyCode;
             if (z == 37 || z == 38 || z == 39 || z == 40) {
@@ -212,7 +308,7 @@ function pac(rad, color, p, q) {
                 else if (z == 40) { q1 = 0; p1 = 1; p2 = 5; q2 = 0; a1 = 0.7; a2 = 0.3; }
             }
         }
-            if(time==35)
+            if(time==30)
             {
                 time=0;
                 m=5;
@@ -226,10 +322,11 @@ function pac(rad, color, p, q) {
                 gamePiece.p += p1;
                 gamePiece.q += q1;
                 level1[this.p][this.q] = 1;
-
             }
        
             else if (level1[this.p + p1][this.q + q1]) {
+                if(level1[this.p + p1][this.q + q1]==2)
+                sc+=10;
                 gamePiece.p += p1;
                 gamePiece.q += q1;
                 level1[this.p][this.q] = 1;
@@ -237,10 +334,10 @@ function pac(rad, color, p, q) {
             }
             else { p1 = 0; q1 = 0; }
         
-        if (t *= -1) {
+            t *= -1
             a1 -= t * 0.18;
             a2 += t * 0.18;
-        }
+        
 
 
         ctx = gameArea.context;
