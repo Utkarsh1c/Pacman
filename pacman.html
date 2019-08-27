@@ -9,27 +9,28 @@
                         top:0;bottom:0;right:0;left:0;
                         margin:auto;
             }
+            .dot{
+                margin-top: 10vh;
+                height: 25px;
+                width: 25px;
+                background-color: green;
+                border-radius: 50%;
+                display: inline-block;
+            }
     </style>
 </head>
 
 <body onload="gameStart()">
     
-    <audio autoplay loop>
-        <source  src="pacman_chomp.wav" type="audio/wav">
-    </audio>
+<div style="text-align:center">
+    <span class="dot" id="c1"></span>
+    <span class="dot" id="c2"></span>
+    <span class="dot" id="c3"></span>
+</div>
+
 
     <script>
-        /* var level1 = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
-            [0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0],
-            [0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
-            [0, 2, 2, 2, 0, 0, 5, 0, 0, 2, 2, 2, 0],
-            [0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
-            [0, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0],
-            [0, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        ]; */
+      
         var level1 = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 1, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0],
@@ -54,10 +55,11 @@
         var ghostPiece2;
         var ghostPiece3;
         var ghostPiece4;
-        a1 = 0.2; p1 = 0; p2 = 0; t = -1; time = 0;
-        a2 = 1.8; q1 = 0; q2 = -5; m = 5; sc = 0;
+        a1 = 0.2; p1 = 0; p2 = 0; t = -1; time = 0; go = 0;
+        a2 = 1.8; q1 = 0; q2 = -5; m = 5; sc = 0; count = 0;
 
         function gameStart() {
+
             gamePiece = new pac(10, "yellow", 1, 1);
             ghostPiece1 = new ghost(8, 8, -1, 0, "aqua",1);
             ghostPiece2 = new ghost(8, 8, 1, 0, "fuchsia",1);
@@ -70,10 +72,12 @@
 var gameArea = {
     canvas: document.createElement("canvas"),
     start: function () {
-        this.canvas.width = 500;
+
+        this.canvas.width = 460;
         this.canvas.height = 500;
         this.context = this.canvas.getContext("2d");
         document.body.appendChild(this.canvas);
+        new Audio("pacman_beginning.wav").play();
         this.interval = setInterval(updateGameArea, 185);
 
 
@@ -82,12 +86,35 @@ var gameArea = {
     clear: function () {
         ctx = gameArea.context;
         ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, 500, 500);
+        ctx.fillRect(0, 0, 460, 500);
         grid();
-    }
+    },
+
+    stop: function(){
+        ctx = gameArea.context;
+        ctx.font = "40px Verdana";
+        var gradient = ctx.createLinearGradient(0, 0, 400, 0);
+        gradient.addColorStop("0", "aqua");
+        gradient.addColorStop("0.5", "fuchsia");
+        gradient.addColorStop("1.0", "aqua");
+        ctx.fillStyle = gradient;
+        if(go){
+        ctx.fillText("Game Over!",50,225);
+        go = 0;
+        }
+        else
+        ctx.fillText("You Won!",50,225);
+        ctx.fillText("Press f5 to restart",50,285);
+        clearInterval(this.interval);
+        onkeydown = function (e) {
+                var z = e.keyCode;
+                if(z==116)
+                location.reload();
+        }
+
+        }
+
 }
-
-
 
 
 function grid() {
@@ -127,7 +154,7 @@ function grid() {
                 ctx.fillText("Score: "+sc,20,475);
 
     if (f == 0)
-        alert("You won");
+        gameArea.stop();
 
 }
 
@@ -296,8 +323,20 @@ function pac(rad, color, p, q) {
     this.q = q;
     this.update = function () {
         if(time==0)
-    if(level1[this.p][this.q] == 5 || level1[this.p + p1][this.q + q1] == 5)
-            alert("You died! Score = "+ sc);
+    if(level1[this.p][this.q] == 5 || level1[this.p + p1][this.q + q1] == 5){
+        if(count!=3)
+        {
+            count++;
+            document.getElementById('c'+count).style.backgroundColor = 'red';
+        }
+        else{
+            new Audio("pacman_death.wav").play();
+            go = 1;
+            count = 0;
+            gameArea.stop();
+            return;
+        }
+    }
         onkeydown = function (e) {
             var z = e.keyCode;
             if (z == 37 || z == 38 || z == 39 || z == 40) {
