@@ -4,11 +4,14 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+            /* canvas to middle */
             canvas {
                         position: absolute;
                         top:0;bottom:0;right:0;left:0;
                         margin:auto;
             }
+            
+            /* styling of lives */
             .dot{
                 margin-top: 10vh;
                 height: 25px;
@@ -22,6 +25,7 @@
 
 <body onload="gameStart()">
     
+    <!-- pacman lives -->
 <div style="text-align:center">
     <span class="dot" id="c1"></span>
     <span class="dot" id="c2"></span>
@@ -104,11 +108,11 @@ var gameArea = {
         }
         else
         ctx.fillText("You Won!",50,225);
-        ctx.fillText("Press f5 to restart",50,285);
+        ctx.fillText("Press f4 to restart",50,285);
         clearInterval(this.interval);
         onkeydown = function (e) {
                 var z = e.keyCode;
-                if(z==116)
+                if(z==115)
                 location.reload();
         }
 
